@@ -1,5 +1,7 @@
+import { Realm, useApp } from "@realm/react";
 import * as Google from "expo-auth-session/providers/google";
 import * as WebBrowser from "expo-web-browser";
+import { Alert } from "react-native";
 
 // Styles
 import { Container, Slogan, Title } from "./styles";
@@ -19,6 +21,8 @@ WebBrowser.maybeCompleteAuthSession();
 export function SignIn() {
   const [isAuthenticating, setIsAuthenticating] = useState(false);
 
+  // Hooks
+  const app = useApp();
   const [_, response, googleSignIn] = Google.useAuthRequest({
     androidClientId: `${ANDROID_CLIENT_ID}`,
     iosClientId: `${IOS_CLIENT_ID}`,
@@ -38,7 +42,22 @@ export function SignIn() {
   useEffect(() => {
     if (response?.type === "success") {
       if (response.authentication?.idToken) {
-        console.log("token de auth", response.authentication.idToken);
+        const credentials = Realm.Credentials.jwt(
+          response.authentication.idToken
+        );
+        app.logIn(credentials).catch((error) => {
+          console.log(error);
+          Alert.alert(
+            "Entrar",
+            "Não foi possível conectar-se a sua conta Google."
+          );
+        });
+      } else {
+        Alert.alert(
+          "Entrar",
+          "Não foi possível conectar-se a sua conta Google."
+        );
+        setIsAuthenticating(false);
       }
     }
   }, [response]);

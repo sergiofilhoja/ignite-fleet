@@ -1,3 +1,5 @@
+import { SafeAreaProvider } from "react-native-safe-area-context";
+
 // Screens
 import { SignIn } from "./src/screens/SignIn";
 
@@ -14,6 +16,16 @@ import theme from "./src/theme";
 import { StatusBar } from "react-native";
 import { Loading } from "./src/components/Loading";
 
+// Configs
+import { REALM_APP_ID } from "@env";
+import { AppProvider, UserProvider } from "@realm/react";
+
+// libs
+import { RealmProvider } from "./src/libs/realm";
+
+// Routes
+import { Routes } from "@routes/index";
+
 export default function App() {
   const [fontsLoaded] = useFonts({ Roboto_400Regular, Roboto_700Bold });
 
@@ -22,13 +34,24 @@ export default function App() {
   }
 
   return (
-    <ThemeProvider theme={theme}>
-      <StatusBar
-        barStyle={"light-content"}
-        backgroundColor={"transparent"}
-        translucent
-      />
-      <SignIn />
-    </ThemeProvider>
+    <AppProvider id={REALM_APP_ID}>
+      <ThemeProvider theme={theme}>
+        <SafeAreaProvider
+          style={{ flex: 1, backgroundColor: theme.COLORS.GRAY_800 }}
+        >
+          <StatusBar
+            barStyle={"light-content"}
+            backgroundColor={"transparent"}
+            translucent
+          />
+
+          <UserProvider fallback={SignIn}>
+            <RealmProvider>
+              <Routes />
+            </RealmProvider>
+          </UserProvider>
+        </SafeAreaProvider>
+      </ThemeProvider>
+    </AppProvider>
   );
 }
