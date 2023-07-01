@@ -31,8 +31,6 @@ export const Message = styled.Text`
 
   flex: 1;
   text-align: justify;
-  // prettier-ignore
-  textAlignVertical: center;
 `;
 
 export const TextHighlight = styled.Text`
