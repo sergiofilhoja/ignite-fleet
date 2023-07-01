@@ -12,8 +12,8 @@ export class Historic extends Realm.Object<Historic> {
   license_plate!: string;
   description!: string;
   status!: string;
-  created_at!: string;
-  updated_at!: string;
+  created_at!: Date;
+  updated_at!: Date;
 
   static generate({ user_id, license_plate, description }: GenerateProps) {
     return {
@@ -29,7 +29,7 @@ export class Historic extends Realm.Object<Historic> {
 
   static schema = {
     name: "Historic",
-    primary: "_id",
+    primaryKey: "_id",
 
     properties: {
       _id: "uuid",
@@ -40,7 +40,7 @@ export class Historic extends Realm.Object<Historic> {
       license_plate: "string",
       description: "string",
       status: "string",
-      create_at: "date",
+      created_at: "date",
       updated_at: "date",
     },
   };
