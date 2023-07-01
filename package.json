@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "@expo-google-fonts/roboto": "^0.2.3",
+    "@react-native-community/netinfo": "9.3.7",
     "@react-navigation/native": "^6.1.7",
     "@react-navigation/native-stack": "^6.9.13",
     "@realm/react": "^0.5.1",
@@ -22,6 +23,7 @@
     "expo-splash-screen": "~0.18.2",
     "expo-status-bar": "~1.4.4",
     "expo-web-browser": "~12.1.1",
+    "native-base": "^3.4.28",
     "phosphor-react-native": "^1.1.2",
     "react": "18.2.0",
     "react-native": "0.71.8",
@@ -31,6 +33,7 @@
     "react-native-screens": "~3.20.0",
     "react-native-svg": "13.4.0",
     "react-native-svg-transformer": "^1.0.0",
+    "react-native-toast-message": "^2.1.6",
     "realm": "^11.10.1",
     "styled-components": "^5.3.10"
   },
