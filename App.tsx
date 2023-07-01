@@ -1,5 +1,6 @@
 import "react-native-get-random-values";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import "./src/libs/dayjs";
 
 // Screens
 import { SignIn } from "./src/screens/SignIn";
