@@ -23,12 +23,20 @@ module.exports = {
       config: {
         googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
       },
+      infoPlist: {
+        UIBackgroundModes: ["location"],
+      },
     },
     android: {
       adaptiveIcon: {
         foregroundImage: "./assets/adaptive-icon.png",
         backgroundColor: "#202024",
       },
+      permissions: [
+        "ACCESS_FINE_LOCATION",
+        "ACCESS_CORS_LOCATION",
+        "ACCESS_BACKGROUND_LOCATION",
+      ],
       package: "com.sergio.ignitefleet",
       config: {
         googleMaps: {
